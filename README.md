@@ -41,7 +41,7 @@ Employee name is used as user name for log in, password can be anything.
         'managerId': null
     },
 ]`
-`
+
 ## Mock Project details
 `[
     {
@@ -61,3 +61,9 @@ Employee name is used as user name for log in, password can be anything.
         'projectName': 'Project 4'
     }
 ]`
+
+## Run
+
+`npm install` to install the npm packages
+
+`ng serve` to run the application
