@@ -3,7 +3,7 @@
 Employee name is used as user name for log in, password can be anything.
 
 ## Mock data found in src/app/mock
-[
+`[
     {
         'empId': 1,
         'empName': 'Sunil',
