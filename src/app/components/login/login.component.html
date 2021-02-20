@@ -1,0 +1,29 @@
+<div class="page-container">
+  <div class="form-container w-35">
+    <div class="page-header-container">
+      <p>Login</p>
+    </div>
+    <div class="p-10">
+      <form [formGroup]="loginForm" (submit)="submit()">
+        <mat-form-field class="form-field">
+          <mat-label> User Name </mat-label>
+          <input matInput formControlName="userName">
+          <mat-error *ngIf="loginForm.controls.userName.touched && loginForm.controls.userName.invalid">
+            <span *ngIf="loginForm.controls.userName.errors.required">User name is required.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <mat-label> Password </mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+            <span *ngIf="loginForm.controls.password.errors.required">Password is required.</span>
+          </mat-error>
+        </mat-form-field>
+        <div class="pt-5">
+          <button mat-raised-button color="primary" type="submit">Log In</button>&nbsp;
+          <button mat-raised-button color="secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

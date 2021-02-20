@@ -1,0 +1,26 @@
+<div>
+  <mat-toolbar color="primary">
+    <span>Feedback</span>
+    <span class="span-spacer"></span>
+    <div *ngIf="appService?.user?.empName" class="login-info">
+      <span>Welcome {{appService?.user?.empName}}</span>
+      <button mat-icon-button [color]="color" (click)="logout()">
+        <mat-icon>
+          exit_to_app
+        </mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+</div>
+<div class="page-container">
+  <!-- [ngClass]="(role.Manager == appService.user?.role)?'w-75':'w-50'" -->
+  <div class="w-75">
+    <div class="w-100" *ngIf="appService?.user?.empName">
+      <button mat-raised-button color="primary" (click)="newFeedback()">New Feedback</button>&nbsp;
+      <button mat-raised-button color="primary" (click)="list()">List</button>
+    </div>
+    <div class="w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

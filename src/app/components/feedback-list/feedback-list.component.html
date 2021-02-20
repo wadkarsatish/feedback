@@ -1,0 +1,100 @@
+<div class="page-container">
+  <div class="form-container w-100">
+    <div class="page-header-container">
+      <p>Feedback List</p>
+    </div>
+    <div class="p-10">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Employee Id Column -->
+        <ng-container matColumnDef="empId" *ngIf="role.Manager == appService.user?.role">
+          <th class="w-10" mat-header-cell *matHeaderCellDef> Employee Id </th>
+          <td class="w-10" mat-cell *matCellDef="let element"> {{element.empId}} </td>
+        </ng-container>
+
+        <!-- Employee  Name Column -->
+        <ng-container matColumnDef="empName" *ngIf="role.Manager == appService.user?.role">
+          <th class="w-10" mat-header-cell *matHeaderCellDef> Employee Name </th>
+          <td class="w-10" mat-cell *matCellDef="let element"> {{element.empName}} </td>
+        </ng-container>
+
+
+        <!-- Project Name Column -->
+        <ng-container matColumnDef="projectName">
+          <th class="w-10" mat-header-cell *matHeaderCellDef> Project Name </th>
+          <td class="w-10" mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+        </ng-container>
+
+        <!-- Rating Column -->
+        <ng-container matColumnDef="rating">
+          <th class="w-10" mat-header-cell *matHeaderCellDef> Rating </th>
+          <td class="w-10" mat-cell *matCellDef="let element">
+            <app-rating [rating]="element.rating" [readonly]="true"></app-rating>
+          </td>
+        </ng-container>
+
+        <!-- Comments Column -->
+        <ng-container matColumnDef="comment">
+          <th class="w-25" mat-header-cell *matHeaderCellDef> Comments </th>
+          <td class="w-25" mat-cell *matCellDef="let element">
+            <p class="word-break-all">{{element.comment}}</p>
+          </td>
+        </ng-container>
+
+        <!--Manager Rating Column -->
+        <div>
+          <ng-container matColumnDef="managerRating">
+            <th class="w-10" mat-header-cell *matHeaderCellDef> Manager Rating </th>
+            <td class="w-10" mat-cell *matCellDef="let element">
+              <app-rating [rating]="element.managerRating" [readonly]="true"></app-rating>
+            </td>
+          </ng-container>
+        </div>
+
+        <!--Manager Comments Column -->
+        <div>
+          <ng-container matColumnDef="managerComment">
+            <th class="w-25" mat-header-cell *matHeaderCellDef> Manager Comments </th>
+            <td class="w-25" mat-cell *matCellDef="let element">
+              <p class="word-break-all">{{element.managerComment}}</p>
+            </td>
+          </ng-container>
+        </div>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th class="w-10" mat-header-cell *matHeaderCellDef> Actions </th>
+          <td class="w-10" mat-cell *matCellDef="let element; let i = index;">
+            <div class="d-flex">
+              <button mat-icon-button [color]="color" (click)="onDelete(element)" [id]="'delete_'+i"
+                [disabled]="element.isManagerFeedbackAdded?true:null" *ngIf="role.Employee == appService.user?.role">
+                <mat-icon [color]="element.isManagerFeedbackAdded?'':'primary'" title="Delete">
+                  delete_forever
+                </mat-icon>
+              </button>
+              <button mat-icon-button [color]="color" (click)="onEdit(element)" [id]="'edit_'+i"
+                [disabled]="element.isManagerFeedbackAdded?true:null" *ngIf="role.Employee == appService.user?.role">
+                <mat-icon [color]="element.isManagerFeedbackAdded?'':'primary'" title="edit">
+                  edit
+                </mat-icon>
+              </button>
+
+              <button mat-icon-button [color]="color" (click)="onEdit(element)" [id]="'review_'+i"
+                *ngIf="role.Manager == appService.user?.role">
+                <mat-icon [color]="'primary'" title="Review">
+                  rate_review
+                </mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
